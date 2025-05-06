@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Examples:
+#   transmission-remote --list          # List torrents
+#   transmission-remote -t <id> --info  # Get torrent details
+docker compose exec -it transmission transmission-remote $@
