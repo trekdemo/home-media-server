@@ -67,39 +67,61 @@
     <h1>YAMS.media</h1>
   </header>
   <div class="container">
-    <a class="card" href="http://pi.local:8080/" target="_blank">
+    <a class="card" href="//:8080/" target="_blank">
       <h3>File Browser</h3>
       <p>Manage files from the browser.</p>
     </a>
-    <a class="card" href="http://pi.local:8096/" target="_blank">
-      <h3>Emby</h3>
+    <a class="card" href="//:8096/" target="_blank">
+      <h3>Jellyfin</h3>
       <p>Stream your media library with ease.</p>
     </a>
-    <a class="card" href="http://pi.local:9091/" target="_blank">
+    <a class="card" href="//:9091/" target="_blank">
       <h3>Transmission</h3>
       <p>Efficient and feature-rich torrent client.</p>
     </a>
-    <a class="card" href="http://pi.local:7878/" target="_blank">
+    <a class="card" href="//:7878/" target="_blank">
       <h3>Radarr</h3>
       <p>Movie collection manager.</p>
     </a>
-    <a class="card" href="http://pi.local:8989/" target="_blank">
+    <a class="card" href="//:8989/" target="_blank">
       <h3>Sonarr</h3>
       <p>TV show collection manager.</p>
     </a>
-    <a class="card" href="http://pi.local:8787/" target="_blank">
+    <a class="card" href="//:8787/" target="_blank">
       <h3>Readarr</h3>
       <p>Book collection manager.</p>
     </a>
-    <a class="card" href="http://pi.local:8686/" target="_blank">
+    <a class="card" href="//:8686/" target="_blank">
       <h3>Lidarr</h3>
       <p>Music collection manager.</p>
     </a>
-    <a class="card" href="http://pi.local:9696/" target="_blank">
+    <a class="card" href="//:9696/" target="_blank">
       <h3>Prowlarr</h3>
       <p>Indexer manager for your apps.</p>
     </a>
   </div>
+
+  <script>
+    // Function to update all links with current hostname
+    function updateLinks() {
+      const currentHost = window.location.hostname;
+      const links = document.querySelectorAll('a.card');
+
+      // Update each link
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        // Extract port number from href
+        const portMatch = href.match(/:(\d+)/);
+        if (portMatch && portMatch[1]) {
+          const port = portMatch[1];
+          link.setAttribute('href', `http://${currentHost}:${port}/`);
+        }
+      });
+    }
+
+    // Run when page loads
+    document.addEventListener('DOMContentLoaded', updateLinks);
+  </script>
 </body>
 
 </html>
